@@ -3,6 +3,7 @@ import "./App.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deleteUser } from "./redux/userSlice";
+import { BASE_URL } from "../helper/helper.jsx";
 
 const Users = () => {
   const users = useSelector((state) => state.userReducer.users);
@@ -12,9 +13,7 @@ const Users = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(
-        `http://localhost:5000/users/delete-user/${id}`
-      );
+      const res = await axios.delete(`${BASE_URL}/users/delete-user/${id}`);
       dispatch(deleteUser({ id }));
       console.log(res);
     } catch (error) {

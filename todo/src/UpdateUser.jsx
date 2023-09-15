@@ -4,6 +4,7 @@ import axios from "axios";
 import { updateUser } from "./redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../helper/helper.jsx";
 
 const UpdateUser = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,11 @@ const UpdateUser = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    const res = await axios.put(
-      `http://localhost:5000/users/update-user/${id}`,
-      { name, email, age }
-    );
+    const res = await axios.put(`${BASE_URL}/users/update-user/${id}`, {
+      name,
+      email,
+      age,
+    });
     dispatch(updateUser({ id, name, email, age }));
     console.log(res);
     alert("User Updated !!");

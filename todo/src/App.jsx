@@ -7,12 +7,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { getUser } from "./redux/userSlice";
 import UpdateUser from "./UpdateUser";
+import { BASE_URL } from "../helper/helper.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const fetchUsers = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/users/");
+      const response = await axios.get(`${BASE_URL}/users/`);
       dispatch(getUser(response.data));
       console.log(response);
     } catch (error) {
